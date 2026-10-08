@@ -1,9 +1,10 @@
+import Analytics from '@/components/layout/Analytics';
 import CustomCursor from '@/components/layout/CustomCursor';
 import SkipLink from '@/components/layout/SkipLink';
 import { profile } from '@/content/profile';
 import { ogImage } from '@/lib/ogImages';
 import { createPreferencesBootstrapScript } from '@/lib/readerPreferences';
-import { BASE_PATH, SITE_ORIGIN, absoluteUrl } from '@/lib/site';
+import { BASE_PATH, IS_LOCAL_SITE, SITE_ORIGIN, absoluteUrl } from '@/lib/site';
 import './globals.css';
 
 const SITE_TITLE = `${profile.name} — ${profile.role}`;
@@ -40,14 +41,17 @@ export const viewport = {
  * <script> tags. GitHub Pages can't send HTTP headers, so this uses <meta>
  * (which can't express frame-ancestors). Production only: the dev server
  * needs eval and websockets for hot reloading.
+ *
+ * GoatCounter (analytics): its script from gc.zgo.at, and page counts sent to
+ * 0xl33n.goatcounter.com (by beacon, or an image as a fallback).
  */
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://gc.zgo.at",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data:",
+  "img-src 'self' data: https://0xl33n.goatcounter.com",
   "font-src 'self'",
-  "connect-src 'self'",
+  "connect-src 'self' https://0xl33n.goatcounter.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'none'",
@@ -69,6 +73,8 @@ export default function RootLayout({ children }) {
         <SkipLink />
         {children}
         <CustomCursor />
+        {/* Visitor counts on the live site only, not in development or local test builds. */}
+        {process.env.NODE_ENV === 'production' && !IS_LOCAL_SITE && <Analytics />}
       </body>
     </html>
   );
