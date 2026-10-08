@@ -8,9 +8,9 @@ import styles from './TerminalWindow.module.css';
 
 const NAV_LINKS = [
   { href: '#experience', label: '~/experience' },
+  { href: '#awards', label: '~/awards' },
   { href: '#work', label: '~/work' },
   { href: '#writeups', label: '~/writeups' },
-  { href: '#awards', label: '~/awards' },
   { href: '#stack', label: '~/stack' },
   { href: '#contact', label: '~/contact' },
 ];

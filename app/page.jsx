@@ -49,11 +49,11 @@ export default function HomePage() {
             <Divider />
             <ExperienceSection />
             <Divider />
+            <AwardsSection />
+            <Divider />
             <WorkSection />
             <Divider />
             <WritingSection />
-            <Divider />
-            <AwardsSection />
             <Divider />
             <StackSection />
             <Divider />
