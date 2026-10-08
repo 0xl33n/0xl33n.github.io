@@ -1,0 +1,135 @@
+/*
+ * Global styles: design tokens and a small browser reset.
+ * Component styles live next to each component as CSS Modules.
+ */
+
+:root {
+  /* Surfaces */
+  --color-bg: #000;
+  --color-surface: #050805;
+  --color-surface-raised: #070b07;
+
+  /* Text */
+  --color-text: #5f8d68;
+  --color-text-muted: #4c8557; /* small labels; 4.6:1 on --color-surface */
+  --color-heading: #eafff1;
+
+  /* Accents */
+  --color-accent: #39ff7a;
+  --color-accent-muted: #2bbf5c;
+  --color-accent-dim: #1c7a3c;
+  --color-highlight: #ffd24a;
+  --color-prompt: #5cf6ff;
+
+  /* Borders */
+  --color-border: #143614;
+  --color-border-strong: #1f4d1f;
+
+  /* Effects */
+  --glow-accent: 0 0 8px rgba(57, 255, 122, 0.45);
+
+  /* Custom cursor (components/layout/CustomCursor): homepage look; reader themes override below. */
+  --cursor-color: #39ff7a;
+  --cursor-fill: rgba(57, 255, 122, 0.12);
+  --cursor-glow: 0 0 10px rgba(57, 255, 122, 0.55);
+  --cursor-dot-radius: 1px; /* square "terminal cell" dot */
+  --cursor-ring-radius: 7px;
+  /* On near-black this looks unchanged; over the green buttons it inverts to dark, so it never disappears. */
+  --cursor-blend: difference;
+
+  /* Typography */
+  /* 'JetBrains Mono' is loaded by the homepage only (app/fonts.js); elsewhere this falls back to system monospace. */
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 90% 5%, rgba(57, 255, 122, 0.08), transparent 32%),
+    radial-gradient(circle at 5% 45%, rgba(57, 255, 122, 0.05), transparent 34%);
+  color: var(--color-text);
+  font: 14px/1.65 var(--font-mono);
+}
+
+::selection {
+  background: rgba(57, 255, 122, 0.3);
+  color: var(--color-heading);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Custom cursor: hide the system cursor only while the custom one is active
+   (real mouse, no reduced motion). Text fields keep the system I-beam. */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+html.has-custom-cursor :is(input:not([type='checkbox']):not([type='radio']), textarea, [contenteditable='true']) {
+  cursor: text !important;
+}
+
+/* Cursor per reader theme: the same attributes the theme switcher sets on <html>. */
+html[data-reader-theme='terminal'] {
+  --cursor-color: #5ee39a;
+  --cursor-fill: rgba(94, 227, 154, 0.12);
+  --cursor-glow: 0 0 8px rgba(94, 227, 154, 0.45);
+}
+
+html[data-reader-theme='light'] {
+  --cursor-color: #13723c;
+  --cursor-fill: rgba(19, 114, 60, 0.1);
+  --cursor-glow: none;
+  --cursor-dot-radius: 50%; /* Apple-style round cursor */
+  --cursor-ring-radius: 50%;
+  --cursor-blend: normal; /* difference would turn green pink on white */
+}
+
+html[data-reader-theme='dark'] {
+  --cursor-color: #4cd38a;
+  --cursor-fill: rgba(76, 211, 138, 0.14);
+  --cursor-glow: none;
+  --cursor-dot-radius: 50%;
+  --cursor-ring-radius: 50%;
+  --cursor-blend: normal;
+}
+
+/* Visible keyboard focus everywhere (mouse clicks don't trigger :focus-visible). */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Article pages: page background follows the reader theme (set on <html>),
+   so overscroll and short pages don't flash the neon homepage background. */
+html[data-reader-theme='terminal'] body {
+  background: #070b08;
+}
+
+html[data-reader-theme='light'] body {
+  background: #ffffff;
+}
+
+html[data-reader-theme='dark'] body {
+  background: #1c1c1e;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}

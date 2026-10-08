@@ -1,0 +1,64 @@
+.stackGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stackCard {
+  min-height: 155px;
+  padding: 19px 20px 20px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 5px;
+  background: linear-gradient(135deg, rgba(57, 255, 122, 0.025), transparent 48%), var(--color-surface);
+  box-shadow: inset 0 0 24px rgba(57, 255, 122, 0.018);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.stackCard:hover {
+  border-color: #285c32;
+  box-shadow:
+    inset 0 0 24px rgba(57, 255, 122, 0.025),
+    0 8px 24px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+  min-height: 125px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid rgba(31, 77, 31, 0.45);
+}
+
+.groupIndex {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.groupLabel {
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 850px) {
+  .stackGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fullWidth {
+    grid-column: auto;
+  }
+}

@@ -1,0 +1,293 @@
+/* Uses the reader theme tokens from ArticleReader.module.css. */
+
+.container {
+  position: relative;
+}
+
+/* "Aa Theme" trigger, matching the other toolbar pill buttons. The visible
+   "Theme" label tells readers where appearance settings live. */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1px solid var(--reader-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--reader-text);
+  font-family: var(--reader-font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.trigger:hover,
+.trigger[aria-expanded='true'] {
+  background: var(--reader-surface);
+}
+
+/* While the first-visit tip is showing, the button glows so the tip's
+   "ᴀA Theme" points somewhere visible. */
+.triggerHighlighted {
+  border-color: var(--reader-link);
+  animation: triggerGlow 1.8s ease-in-out infinite;
+}
+
+@keyframes triggerGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--reader-link) 30%, transparent);
+  }
+}
+
+.triggerIcon {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+  line-height: 1;
+}
+
+.triggerSmallA {
+  font-size: 11px;
+}
+
+.triggerLargeA {
+  font-size: 15px;
+}
+
+/* One-time theme tip (ThemeTip): in the page flow below the toolbar, aligned with the text column. */
+.tip {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  width: min(calc(100% - 32px), 680px);
+  margin: 16px auto 0;
+  padding: 12px 14px;
+  border: 1px solid var(--reader-link);
+  border-radius: 12px;
+  background: var(--reader-popover-bg);
+  color: var(--reader-text);
+  font-family: var(--reader-font-ui);
+  font-size: 13px;
+  line-height: 1.45;
+  animation: popIn 0.2s ease-out;
+}
+
+.tipText {
+  margin: 0;
+}
+
+.tipButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0 1px;
+  padding: 0 8px;
+  border: 1px solid var(--reader-link);
+  border-radius: 999px;
+  color: var(--reader-heading);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Read by screen readers in place of the decorative button copy. */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.tipText strong {
+  color: var(--reader-heading);
+  font-weight: 600;
+}
+
+.tipDismiss {
+  justify-self: end;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--reader-link);
+  color: var(--reader-bg);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Popover */
+.panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 10;
+  display: grid;
+  gap: 14px;
+  width: 300px;
+  padding: 16px;
+  border: 1px solid var(--reader-border);
+  border-radius: 14px;
+  /* Solid: the title bar's backdrop-filter prevents a nested blur from working. */
+  background: var(--reader-popover-bg);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+  color: var(--reader-text);
+  font-family: var(--reader-font-ui);
+  font-size: 13px;
+  animation: popIn 0.14s ease-out;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+}
+
+.row {
+  display: grid;
+  gap: 6px;
+}
+
+.rowLabel {
+  color: var(--reader-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Shared look for segmented buttons and stepper buttons */
+.segmented,
+.stepper {
+  display: flex;
+  padding: 2px;
+  border-radius: 9px;
+  background: var(--reader-control-track);
+}
+
+.segment,
+.stepButton {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  min-height: 30px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--reader-text);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.segment[aria-pressed='true'] {
+  background: var(--reader-segment-selected);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.segment:focus-visible,
+.stepButton:focus-visible,
+.trigger:focus-visible,
+.tipDismiss:focus-visible {
+  outline: 2px solid var(--reader-link);
+  outline-offset: 2px;
+}
+
+/* Theme swatch: background colour with an accent dot. */
+.swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  flex: none;
+  margin-right: 6px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  border-radius: 50%;
+}
+
+.swatchTerminal {
+  background: radial-gradient(circle at 50% 50%, #5ee39a 0 2.5px, #070b08 3px);
+}
+
+.swatchLight {
+  background: radial-gradient(circle at 50% 50%, #13723c 0 2.5px, #ffffff 3px);
+}
+
+.swatchDark {
+  background: radial-gradient(circle at 50% 50%, #4cd38a 0 2.5px, #1c1c1e 3px);
+}
+
+.stepButton:hover:not(:disabled) {
+  background: var(--reader-segment-selected);
+}
+
+.stepButton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.stepValue {
+  align-self: center;
+  min-width: 52px;
+  color: var(--reader-text-secondary);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.stepSmallA {
+  font-size: 13px;
+}
+
+.stepLargeA {
+  font-size: 19px;
+}
+
+/* Font choices are previewed in their own typeface. */
+.monoSample {
+  font-family: var(--reader-font-mono);
+}
+
+.sansSample {
+  font-family: var(--reader-font-sans);
+}
+
+.serifSample {
+  font-family: var(--reader-font-serif);
+  font-size: 14px;
+}
+
+/* Smallest phones: match the tighter toolbar buttons (ReaderShell.module.css). */
+@media (max-width: 380px) {
+  .trigger {
+    padding: 4px 9px;
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+
+  .trigger {
+    transition: none;
+  }
+
+  .tip {
+    animation: none;
+  }
+
+  /* Keep the highlight, without the pulse. */
+  .triggerHighlighted {
+    animation: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--reader-link) 30%, transparent);
+  }
+}

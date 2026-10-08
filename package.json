@@ -1,0 +1,50 @@
+{
+  "name": "neel-security-portfolio",
+  "version": "3.0.0",
+  "private": true,
+  "scripts": {
+    "images": "node scripts/optimize-images.mjs",
+    "predev": "npm run images",
+    "dev": "next dev",
+    "prebuild": "npm run images",
+    "build": "next build",
+    "serve": "node scripts/serve-static.mjs",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "npm run lint && npm run format:check && npm test",
+    "check:ghidra": "node scripts/check-ghidra-snippets.mjs"
+  },
+  "dependencies": {
+    "github-slugger": "^2.0.0",
+    "hast-util-to-jsx-runtime": "^2.3.6",
+    "hast-util-to-string": "^3.0.1",
+    "next": "16.3.8",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "rehype-highlight": "7.0.2",
+    "rehype-raw": "7.0.0",
+    "rehype-sanitize": "6.0.0",
+    "remark-gfm": "4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "server-only": "^0.0.1",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.1.0",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.8",
+    "hast-util-to-html": "^9.0.5",
+    "prettier": "^3.9.9",
+    "sharp": "^0.35.5",
+    "vitest": "^5.0.3"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}

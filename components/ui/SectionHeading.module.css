@@ -1,0 +1,21 @@
+.heading {
+  margin-bottom: 19px;
+}
+
+.title {
+  margin: 0;
+  color: var(--color-heading);
+  font-size: 25px;
+  line-height: 1.25;
+}
+
+.annotation {
+  color: var(--color-accent-dim);
+  font-weight: 500;
+}
+
+@media (max-width: 520px) {
+  .title {
+    font-size: 21px;
+  }
+}

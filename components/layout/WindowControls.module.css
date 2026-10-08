@@ -1,0 +1,51 @@
+.controls {
+  display: flex;
+  /* Pull the first 24px hit area back so the first dot aligns with the content edge. */
+  margin-left: -7px;
+}
+
+/* 24×24 hit area; the visible 10px dot is drawn by ::before. */
+.control {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  appearance: none;
+}
+
+button.control,
+a.control {
+  display: block;
+  cursor: pointer;
+}
+
+.control::before {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--dot-color);
+}
+
+button.control:focus-visible,
+a.control:focus-visible {
+  border-radius: 50%;
+  outline-offset: -2px;
+}
+
+.close {
+  --dot-color: #ff5f56;
+}
+
+.minimize {
+  --dot-color: #ffbd2e;
+}
+
+.maximize {
+  --dot-color: #27c93f;
+}

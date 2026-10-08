@@ -1,0 +1,49 @@
+.intro {
+  max-width: 68ch;
+  margin: 0 0 22px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.intro p {
+  margin: 0 0 16px;
+}
+
+/* Topics covered, each linking to its section on the writeups page. */
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+}
+
+.topics a {
+  display: inline-block;
+  padding: 3px 10px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  color: var(--color-text);
+  transition: 0.2s;
+}
+
+.topics a:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.allLink {
+  display: inline-flex;
+  padding: 8px 12px;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  color: var(--color-accent);
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.allLink:hover {
+  background: rgba(57, 255, 122, 0.06);
+}

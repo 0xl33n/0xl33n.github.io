@@ -1,0 +1,37 @@
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  /* Pushes the tags to the bottom of flex-column cards. */
+  margin-top: auto;
+}
+
+.tag {
+  padding: 2px 7px;
+  border: 1px solid #1b4824;
+  border-radius: 3px;
+  color: #55845f;
+  font-size: 11px;
+}
+
+.highlighted {
+  border-color: rgba(255, 210, 74, 0.45);
+  color: var(--color-highlight);
+}
+
+/* Spacious variant (stack grid) */
+.spacious {
+  margin-top: 0;
+  gap: 7px;
+}
+
+.spacious .tag {
+  padding: 4px 8px;
+  background: rgba(57, 255, 122, 0.018);
+  color: #75a67e;
+}
+
+.spacious .tag:hover {
+  border-color: #356b40;
+  color: var(--color-accent);
+}

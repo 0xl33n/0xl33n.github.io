@@ -1,0 +1,25 @@
+.scanlines,
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.scanlines {
+  z-index: 9999;
+  opacity: 0.5;
+  /* Plain alpha blending looks identical to the old mix-blend-mode: multiply
+     over black lines, without forcing a full-page blend on every scroll frame. */
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.16) 3px,
+    transparent 4px
+  );
+}
+
+.vignette {
+  z-index: 9998;
+  box-shadow: inset 0 0 180px rgba(0, 0, 0, 0.45);
+}

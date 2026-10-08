@@ -1,0 +1,20 @@
+.projectGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* Grid items stretch; let the card fill its cell. */
+.projectGrid > * {
+  display: grid;
+}
+
+.featured {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 850px) {
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
+}

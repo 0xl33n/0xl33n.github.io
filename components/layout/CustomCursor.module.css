@@ -1,0 +1,116 @@
+/*
+ * Custom cursor. Colours and shape come from --cursor-* variables set per
+ * theme in app/globals.css (homepage, and each reader theme on <html>).
+ *
+ * The outer .dot / .ring elements are moved with transform by JavaScript;
+ * the inner *Shape elements are centred on that point and do the styling and
+ * state animations, so the two never fight over `transform`.
+ */
+.cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: var(--cursor-blend, normal);
+  transition: opacity 0.2s ease;
+}
+
+.cursor[data-visible='true'] {
+  opacity: 1;
+}
+
+/* Over text fields the system I-beam takes over. */
+.cursor[data-state='text'] {
+  opacity: 0;
+}
+
+.dot,
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+/* Dot: tracks the pointer exactly. */
+.dotShape {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: var(--cursor-dot-radius);
+  background: var(--cursor-color);
+  box-shadow: var(--cursor-glow);
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    background-color 0.25s ease;
+}
+
+/* Ring: trails the pointer. */
+.ringShape {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0 -15px;
+  border: 1.5px solid var(--cursor-color);
+  border-radius: var(--cursor-ring-radius);
+  background: transparent;
+  box-shadow: var(--cursor-glow);
+  opacity: 0.55;
+  transition:
+    width 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+    height 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+    margin 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+    opacity 0.2s ease,
+    transform 0.15s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    border-radius 0.25s ease;
+}
+
+/* Hovering links, buttons and other controls: bigger, lightly filled ring; dot recedes. */
+.cursor:is([data-state='interactive'], [data-state='zoom'], [data-state='close']) .ringShape {
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  background: var(--cursor-fill);
+  opacity: 1;
+}
+
+.cursor:is([data-state='interactive'], [data-state='zoom'], [data-state='close']) .dotShape {
+  transform: scale(0.5);
+}
+
+/* Zoom / close hints inside the ring. */
+.label {
+  color: var(--cursor-color);
+  font:
+    600 18px/1 ui-monospace,
+    Menlo,
+    monospace;
+}
+
+.cursor[data-state='zoom'] .label::before {
+  content: '+';
+}
+
+.cursor[data-state='close'] .label::before {
+  content: '×';
+}
+
+.cursor:is([data-state='zoom'], [data-state='close']) .dotShape {
+  opacity: 0;
+}
+
+/* Press feedback. */
+.cursor[data-pressed='true'] .ringShape {
+  transform: scale(0.82);
+}
+
+.cursor[data-pressed='true'] .dotShape {
+  transform: scale(1.4);
+}

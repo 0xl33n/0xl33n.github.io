@@ -1,0 +1,75 @@
+.timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: var(--color-surface);
+}
+
+/* One log entry: date column + details. */
+.entry {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 24px;
+  padding: 22px 24px;
+}
+
+.entry + .entry {
+  border-top: 1px solid var(--color-border);
+}
+
+.period {
+  color: var(--color-highlight);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.role {
+  margin: 0 0 4px;
+  color: var(--color-heading);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.at {
+  color: var(--color-accent);
+}
+
+.meta {
+  margin: 0 0 12px;
+  color: var(--color-text-muted);
+  font-size: 12px;
+}
+
+.body > .meta:last-child {
+  margin-bottom: 0;
+}
+
+.highlights {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.highlights li {
+  position: relative;
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+
+.highlights li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+}
+
+@media (max-width: 700px) {
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 18px;
+  }
+}

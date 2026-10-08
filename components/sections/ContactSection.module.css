@@ -1,0 +1,79 @@
+.callToAction {
+  position: relative;
+  overflow: hidden;
+  padding: 48px 28px 44px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 6px;
+  background: radial-gradient(circle at 50% 0, rgba(57, 255, 122, 0.09), transparent 52%), var(--color-surface);
+  box-shadow:
+    inset 0 0 45px rgba(57, 255, 122, 0.025),
+    0 10px 35px rgba(0, 0, 0, 0.14);
+  text-align: center;
+}
+
+/* Small code-comment eyebrow above the title. */
+.callToAction::before {
+  content: '// open to interesting security problems';
+  display: block;
+  margin-bottom: 18px;
+  color: var(--color-text-muted);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 0 10px;
+  color: var(--color-heading);
+  font-size: 29px;
+  line-height: 1.2;
+}
+
+.title span {
+  color: var(--color-accent);
+  text-shadow: var(--glow-accent);
+}
+
+.pitch {
+  max-width: 650px;
+  margin: 0 auto 25px;
+  color: var(--color-text);
+}
+
+.primaryButton {
+  display: inline-flex;
+  margin-bottom: 18px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  background: var(--color-accent);
+  box-shadow: 0 0 14px rgba(57, 255, 122, 0.24);
+  color: #001b08;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  transition: 0.2s;
+}
+
+.primaryButton:hover {
+  box-shadow: 0 0 25px rgba(57, 255, 122, 0.45);
+  transform: translateY(-1px);
+}
+
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.socialLink {
+  padding: 6px 11px;
+  border: 1px solid #1b4824;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.socialLink:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-accent);
+}

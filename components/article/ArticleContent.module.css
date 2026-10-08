@@ -1,0 +1,449 @@
+/*
+ * Prose typography for the article body, following long-form reading guidelines (Apple HIG,
+ * Safari Reader, Butterick's Practical Typography):
+ *   - proportional font (sans or serif) at 18px by default, 1.65 line height
+ *   - sizes in `em` so everything scales with the reader's text-size setting
+ *   - ~680px measure (≈70 characters per line)
+ *   - clear heading scale with tight tracking, generous vertical rhythm
+ *   - one accent color, reserved for links
+ * Colors come from the theme tokens defined on `.reader` in ArticleReader.module.css.
+ */
+
+.prose {
+  color: var(--reader-text);
+  font-family: var(--reader-font-body);
+  font-size: calc(1em * var(--reader-body-scale, 1));
+  line-height: var(--reader-body-line-height, 1.65);
+  letter-spacing: -0.003em;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  overflow-wrap: break-word;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+/* Headings */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--reader-heading);
+  font-family: var(--reader-font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.prose h1 {
+  margin: 64px 0 16px;
+  font-size: 1.67em; /* 30px */
+}
+
+/* Anchored headings stop below the sticky title bar. */
+.prose [id] {
+  scroll-margin-top: 76px;
+}
+
+.headingAnchor {
+  margin-left: 0.35em;
+  color: var(--reader-text-secondary);
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.prose h2:hover .headingAnchor,
+.prose h3:hover .headingAnchor,
+.prose h4:hover .headingAnchor,
+.headingAnchor:focus-visible {
+  opacity: 1;
+}
+
+.prose h2 {
+  margin: 48px 0 14px;
+  font-size: 1.44em; /* 26px */
+}
+
+.prose h3 {
+  margin: 40px 0 12px;
+  font-size: 1.22em; /* 22px */
+  font-weight: 600;
+}
+
+.prose h4 {
+  margin: 32px 0 10px;
+  font-size: 1.06em; /* 19px */
+  font-weight: 600;
+}
+
+/* Body text */
+.prose p {
+  margin: 0 0 1.15em;
+}
+
+.prose strong {
+  color: var(--reader-heading);
+  font-weight: 600;
+}
+
+.prose a {
+  color: var(--reader-link);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--reader-link) 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease;
+}
+
+.prose a:hover {
+  text-decoration-color: currentColor;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1.15em;
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin: 0.35em 0;
+  padding-left: 0.2em;
+}
+
+.prose li::marker {
+  color: var(--reader-text-secondary);
+}
+
+.prose blockquote {
+  margin: 1.5em 0;
+  padding: 0 0 0 20px;
+  border-left: 3px solid var(--reader-border);
+  color: var(--reader-text-secondary);
+}
+
+.prose hr {
+  height: 1px;
+  margin: 48px 0;
+  border: 0;
+  background: var(--reader-border);
+}
+
+/* Figure captions: paragraphs that are only ***(Figure N: …)*** in the source. */
+.prose p:has(> em:only-child > strong:only-child),
+.prose p:has(> strong:only-child > em:only-child) {
+  margin: -8px auto 32px;
+  color: var(--reader-text-secondary);
+  font-size: 0.78em; /* 14px */
+  line-height: 1.5;
+  text-align: center;
+}
+
+.prose p:has(> em:only-child > strong:only-child) strong,
+.prose p:has(> strong:only-child > em:only-child) strong {
+  color: inherit;
+  font-weight: 500;
+}
+
+/* Same caption, but in the image's own paragraph: ![](…)<br>***(Figure N: …)*** */
+.prose p:has(> .imageButton) > em:has(> strong) {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--reader-text-secondary);
+  font-size: 0.78em; /* 14px */
+  line-height: 1.5;
+  text-align: center;
+}
+
+.prose p:has(> .imageButton) > em:has(> strong) strong {
+  color: inherit;
+  font-weight: 500;
+}
+
+/* Code */
+.prose code {
+  padding: 0.15em 0.4em;
+  border-radius: 5px;
+  background: var(--reader-surface);
+  color: var(--reader-heading);
+  font-family: var(--reader-font-code);
+  font-size: 0.85em;
+}
+
+.codeBlock {
+  position: relative;
+  margin: 1.5em 0;
+}
+
+.copyButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 10px;
+  border: 1px solid var(--reader-border);
+  border-radius: 999px;
+  background: var(--reader-bg);
+  color: var(--reader-text-secondary);
+  font-family: var(--reader-font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.codeBlock:hover .copyButton,
+.copyButton:focus-visible {
+  opacity: 1;
+}
+
+/* Touch screens have no hover: keep the button visible. */
+@media (hover: none) {
+  .copyButton {
+    opacity: 1;
+  }
+}
+
+.prose pre {
+  overflow: auto;
+  margin: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--reader-border);
+  border-radius: 12px;
+  background: var(--reader-surface);
+  font-size: 0.78em; /* 14px */
+  line-height: 1.6;
+}
+
+.prose pre code {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--reader-text);
+  font-size: inherit;
+  white-space: pre;
+}
+
+/* Images: each is wrapped in a button that opens the lightbox. */
+.imageButton {
+  display: block;
+  /* Definite width so the image's max-width: 100% can resolve before it loads. */
+  width: fit-content;
+  max-width: 100%;
+  margin: 32px auto 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.imageButton img {
+  /* No `width: auto`: the width/height attributes must apply so the browser
+     reserves the right space before the image loads (no layout shift, and
+     #section links land in the right place). */
+  display: block;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 1px solid var(--reader-border);
+  border-radius: 12px;
+  filter: var(--reader-image-filter);
+  transition:
+    filter 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.imageButton:hover img {
+  filter: none;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.imageButton:focus-visible {
+  border-radius: 14px;
+}
+
+/* Tables */
+.prose table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--reader-border);
+  border-radius: 12px;
+  font-size: 0.89em; /* 16px */
+  line-height: 1.5;
+}
+
+.prose th,
+.prose td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--reader-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose tr:last-child td {
+  border-bottom: 0;
+}
+
+.prose th {
+  background: var(--reader-surface);
+  color: var(--reader-heading);
+  font-weight: 600;
+}
+
+/* Single-cell tables are used as "❗ note" callouts in the source documents. */
+.prose table:has(th:only-child) {
+  border-color: var(--reader-callout-border);
+  background: var(--reader-callout-bg);
+}
+
+.prose table:has(th:only-child) th,
+.prose table:has(th:only-child) td {
+  border-bottom: 0;
+  background: none;
+  color: var(--reader-text);
+  font-weight: 400;
+}
+
+/* Syntax highlighting (highlight.js classes from rehype-highlight).
+   Terminal theme uses the homepage palette: green, amber, cyan. */
+.prose :global(.hljs-comment),
+.prose :global(.hljs-quote) {
+  color: #7f9c86;
+  font-style: italic;
+}
+.prose :global(.hljs-keyword),
+.prose :global(.hljs-selector-tag),
+.prose :global(.hljs-built_in) {
+  color: #6ee7a0;
+}
+.prose :global(.hljs-string),
+.prose :global(.hljs-attr),
+.prose :global(.hljs-symbol),
+.prose :global(.hljs-bullet) {
+  color: #ffd24a;
+}
+.prose :global(.hljs-number),
+.prose :global(.hljs-literal),
+.prose :global(.hljs-variable),
+.prose :global(.hljs-template-variable) {
+  color: #5cf6ff;
+}
+.prose :global(.hljs-title),
+.prose :global(.hljs-section),
+.prose :global(.hljs-name) {
+  color: #b4f5c8;
+}
+.prose :global(.hljs-meta),
+.prose :global(.hljs-type) {
+  color: #8fd1ff;
+}
+.prose :global(.hljs-addition) {
+  color: #6ee7a0;
+}
+.prose :global(.hljs-deletion) {
+  color: #ff8a80;
+}
+
+/* Light theme: darker versions of the same hues (all ≥ 4.5:1 on the code background). */
+:global(html[data-reader-theme='light']) .prose :global(.hljs-comment),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-quote) {
+  color: #66736a;
+}
+:global(html[data-reader-theme='light']) .prose :global(.hljs-keyword),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-selector-tag),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-built_in),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-addition) {
+  color: #0f6b3a;
+}
+:global(html[data-reader-theme='light']) .prose :global(.hljs-string),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-attr),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-symbol),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-bullet) {
+  color: #8a5a00;
+}
+:global(html[data-reader-theme='light']) .prose :global(.hljs-number),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-literal),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-variable),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-template-variable) {
+  color: #0b6b80;
+}
+:global(html[data-reader-theme='light']) .prose :global(.hljs-title),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-section),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-name) {
+  color: #5b3cc4;
+}
+:global(html[data-reader-theme='light']) .prose :global(.hljs-meta),
+:global(html[data-reader-theme='light']) .prose :global(.hljs-type) {
+  color: #9a4a00;
+}
+:global(html[data-reader-theme='light']) .prose :global(.hljs-deletion) {
+  color: #b3261e;
+}
+
+/* Dark theme: GitHub-style dark palette. */
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-comment),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-quote) {
+  color: #8b949e;
+}
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-keyword),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-selector-tag),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-built_in) {
+  color: #ff7b72;
+}
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-string),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-attr),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-symbol),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-bullet) {
+  color: #a5d6ff;
+}
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-number),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-literal),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-variable),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-template-variable) {
+  color: #79c0ff;
+}
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-title),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-section),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-name) {
+  color: #d2a8ff;
+}
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-meta),
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-type) {
+  color: #ffa657;
+}
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-addition) {
+  color: #aff5b4;
+}
+:global(html[data-reader-theme='dark']) .prose :global(.hljs-deletion) {
+  color: #ffa198;
+}
+
+/* Phones: one step smaller and tighter margins; headings scale down a little more. */
+@media (max-width: 700px) {
+  .prose h1 {
+    font-size: 1.53em;
+  }
+
+  .prose h2 {
+    font-size: 1.35em;
+  }
+
+  .prose h3 {
+    font-size: 1.18em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prose a,
+  .imageButton img,
+  .headingAnchor,
+  .copyButton {
+    transition: none;
+  }
+}

@@ -1,0 +1,93 @@
+.name {
+  margin: 0 0 13px;
+  color: var(--color-heading);
+  font-size: 60px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  text-shadow:
+    var(--glow-accent),
+    0 0 24px rgba(57, 255, 122, 0.18);
+}
+
+.role {
+  margin-bottom: 14px;
+  color: var(--color-accent);
+  font-size: 17px;
+  text-shadow: var(--glow-accent);
+}
+
+.role span {
+  color: var(--color-text);
+}
+
+.intro {
+  max-width: 690px;
+  margin: 0 0 22px;
+}
+
+.emphasis {
+  color: var(--color-accent);
+}
+
+/* Checklist-style facts: "[x] India / UTC+5:30" */
+.quickFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 18px;
+  margin: 22px 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.quickFacts li::before {
+  content: '[x] ';
+  color: var(--color-accent);
+}
+
+/* Call-to-action buttons */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.button {
+  display: inline-flex;
+  padding: 10px 14px;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+.primaryButton {
+  background: var(--color-accent);
+  box-shadow: 0 0 14px rgba(57, 255, 122, 0.24);
+  color: #001b08;
+  font-weight: 700;
+}
+
+.primaryButton:hover {
+  box-shadow: 0 0 25px rgba(57, 255, 122, 0.45);
+  transform: translateY(-1px);
+}
+
+.ghostButton {
+  color: var(--color-accent);
+}
+
+.ghostButton:hover {
+  background: rgba(57, 255, 122, 0.06);
+}
+
+@media (max-width: 850px) {
+  .name {
+    font-size: 44px;
+  }
+}
+
+@media (max-width: 520px) {
+  .name {
+    font-size: 35px;
+  }
+}

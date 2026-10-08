@@ -1,0 +1,73 @@
+.details {
+  max-width: 900px;
+  margin: 14px 0 0;
+  color: var(--color-text);
+  line-height: 1.75;
+}
+
+/* Medallion photos and the letter link */
+.evidence {
+  margin: 18px 0;
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.photos li {
+  display: grid;
+  gap: 6px;
+}
+
+.photos a {
+  display: block;
+  width: 180px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 4px;
+  overflow: hidden;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.photos a:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 14px rgba(57, 255, 122, 0.15);
+}
+
+.photos img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  color: var(--color-text-muted);
+  font-size: 11px;
+}
+
+.letterLink {
+  color: var(--color-accent);
+  font-size: 13px;
+}
+
+.letterLink:hover {
+  text-shadow: var(--glow-accent);
+}
+
+@media (max-width: 480px) {
+  .photos a {
+    width: calc((100vw - 110px) / 2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photos a {
+    transition: none;
+  }
+}

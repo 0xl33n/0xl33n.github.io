@@ -1,0 +1,14 @@
+.commandLine {
+  margin: 0 0 20px;
+  color: var(--color-heading);
+  font-size: 13px;
+}
+
+.prompt {
+  color: var(--color-prompt);
+}
+
+/* Trailing `# comment` after a command. */
+.comment {
+  color: var(--color-text);
+}

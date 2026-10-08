@@ -1,0 +1,10 @@
+.next/
+out/
+node_modules/
+.generated/
+public/
+package-lock.json
+playwright-report/
+test-results/
+# Article content is authored Markdown; keep it exactly as written.
+content/writeups/
