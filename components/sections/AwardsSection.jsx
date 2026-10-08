@@ -11,7 +11,7 @@ export default function AwardsSection() {
     <section id="awards">
       <CommandLine>cat ~/awards.txt</CommandLine>
 
-      <SectionHeading kicker="awards & challenges" annotation="// no redirect">
+      <SectionHeading kicker="awards & challenges" annotation="// gpg --verify letter.sig">
         Recognition through hands-on security research
       </SectionHeading>
 
