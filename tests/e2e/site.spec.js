@@ -106,6 +106,16 @@ test('writeups are grouped by topic, and the article links back to its topic', a
   await expect(page.getByRole('link', { name: /Practical Guide to Reverse Engineering Flutter/ })).toBeVisible();
 });
 
+test('the first call to action on the homepage opens the writeups', async ({ page }) => {
+  await page.goto('./');
+  await page
+    .locator('#home')
+    .getByRole('link', { name: /cd ~\/writeups/ })
+    .click();
+  await expect(page).toHaveURL(/\/writeups\/$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Writeups');
+});
+
 test('homepage introduces the writeups and links to them', async ({ page }) => {
   await page.goto('./');
   const section = page.locator('#writeups');

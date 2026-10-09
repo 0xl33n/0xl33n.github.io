@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import BlinkingCursor from '@/components/ui/BlinkingCursor';
 import CommandLine from '@/components/ui/CommandLine';
 import Kicker from '@/components/ui/Kicker';
@@ -35,11 +36,12 @@ export default function HeroSection() {
       </ul>
 
       <div className={styles.actions}>
-        <a className={`${styles.button} ${styles.primaryButton}`} href="#experience">
-          $ cat ~/experience.log -&gt;
-        </a>
-        <a className={`${styles.button} ${styles.ghostButton}`} href="#contact">
-          ./contact --hire
+        {/* Leads with the writeups: the research is what makes people stay. */}
+        <Link className={`${styles.button} ${styles.primaryButton}`} href="/writeups/">
+          $ cd ~/writeups -&gt;
+        </Link>
+        <a className={`${styles.button} ${styles.ghostButton}`} href="#experience">
+          $ cat ~/experience.log
         </a>
         <a
           className={`${styles.button} ${styles.ghostButton}`}
