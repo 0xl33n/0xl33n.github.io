@@ -59,6 +59,22 @@
   margin-left: auto;
 }
 
+/* Tap targets: at least 24px tall (WCAG 2.2), about 44px on touch screens (Apple HIG). */
+.nav a {
+  display: inline-block;
+  padding: 4px 0;
+}
+
+@media (pointer: coarse) {
+  .nav {
+    gap: 0 20px;
+  }
+
+  .nav a {
+    padding: 11px 0;
+  }
+}
+
 .nav a:hover {
   color: var(--color-accent);
   text-shadow: var(--glow-accent);

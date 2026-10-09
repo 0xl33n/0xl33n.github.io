@@ -48,7 +48,11 @@
 }
 
 .headingAnchor {
-  margin-left: 0.35em;
+  display: inline-block;
+  min-width: 24px; /* tap target at least 24×24px (WCAG 2.2) */
+  min-height: 24px;
+  margin-left: 0.2em;
+  text-align: center;
   color: var(--reader-text-secondary);
   font-weight: 400;
   text-decoration: none;
