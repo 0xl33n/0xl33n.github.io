@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neel Patel — Writeups</title>
+    <link>https://0xl33n.github.io/writeups/</link>
+    <description>Neel Patel is a security engineer and researcher specializing in application, mobile and cloud security, reverse engineering and threat modeling.</description>
+    <language>en-us</language>
+    <atom:link href="https://0xl33n.github.io/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Oct 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Basic Stack Overflow</title>
+      <link>https://0xl33n.github.io/writeups/basic-stack-overflow/</link>
+      <guid isPermaLink="true">https://0xl33n.github.io/writeups/basic-stack-overflow/</guid>
+      <description>A beginner-friendly walkthrough of AArch64 stack buffer overflow exploitation: from the first crash to hijacking control flow via a saved return address.</description>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Stack Buffer Overflow</category>
+      <category>AArch64</category>
+      <category>pwntools</category>
+      <category>GDB</category>
+      <category>ret2win</category>
+    </item>
+    <item>
+      <title>Practical Guide to Reverse Engineering Flutter Applications</title>
+      <link>https://0xl33n.github.io/writeups/flutter-reverse-engineering/</link>
+      <guid isPermaLink="true">https://0xl33n.github.io/writeups/flutter-reverse-engineering/</guid>
+      <description>Reverse engineering Flutter/Dart AOT apps on Android and iOS with Ghidra, reFlutter and Frida, from symbol recovery to fixing up the Dart VM stack for decompilation.</description>
+      <pubDate>Mon, 01 Jul 2024 00:00:00 GMT</pubDate>
+      <category>Flutter</category>
+      <category>Dart AOT</category>
+      <category>Ghidra</category>
+      <category>Frida</category>
+      <category>iOS</category>
+      <category>Android</category>
+    </item>
+  </channel>
+</rss>
